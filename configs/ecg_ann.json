@@ -1,0 +1,11 @@
+{
+  "base_channels": 8,
+  "context_channels": 32,
+  "signal_length": 512,
+  "sample_rate": 256.0,
+  "spiking": false,
+  "dropout": 0.1,
+  "recurrent_rank": null,
+  "decoder_mode": "gated-fusion",
+  "stage_count": 5
+}

@@ -1,0 +1,65 @@
+{
+  "release_date": "2026-10-21",
+  "source_snapshot": "quality_speed_ecg_v1_20261017/frozen/eegdnsnn/models",
+  "source_sha256": {
+    "pyramid.py": "59aade04e873f2e4d54bb071f57a9477c7e4774679463ee4e0f9928d558ce27b",
+    "resonant.py": "4508ad48110d3b8b3093c54b29d965cd8d95f5a4b8ee84dadc4956d995973a47",
+    "spike.py": "e1e7b48f2e7eb065fd668fd088f1ea8d2940dd72092ba731ffec4d7e8f5a3a44"
+  },
+  "retained_symbols": {
+    "pyramid.py": [
+      "TemporalContext",
+      "PyramidStage",
+      "GatedPyramidDecoderStage",
+      "PyramidEventDenoiser"
+    ],
+    "resonant.py": [
+      "_logit",
+      "_groups",
+      "BandResonantSpikingUnit",
+      "ResonantEventBlock"
+    ],
+    "spike.py": [
+      "_TriangularSpike",
+      "surrogate_spike",
+      "_inverse_softplus"
+    ]
+  },
+  "adaptations": [
+    "Extract required symbols unchanged; omit unrelated models.",
+    "Add TCCRNet subclass with formal default widths and fixed five-stage gated configuration.",
+    "Preserve state_dict parameter names; no wrapper module prefix."
+  ],
+  "reference_architecture": {
+    "historical_key": "GGLP-ANN",
+    "checkpoint_id": "n50_ecg_selector_clarity/seed5_gated/best.pt",
+    "checkpoint_sha256": "ddc96a5e887990c2da6ff3b71cd072bf14775bfe1b2c2f6bcb9983056648964c",
+    "parameters": 3135270,
+    "model_config": {
+      "base_channels": 8,
+      "context_channels": 32,
+      "signal_length": 512,
+      "sample_rate": 256.0,
+      "spiking": false,
+      "dropout": 0.1,
+      "recurrent_rank": null,
+      "decoder_mode": "gated-fusion",
+      "stage_count": 5
+    },
+    "checkpoint_included": false
+  },
+  "files_sha256": {
+    ".gitignore": "7ea5b06e4f5894d3adaf923dcca0204ea386da64fa278b3bcafdd36889347736",
+    "configs/ecg_ann.json": "14a1a1fad2b51c8e5620c412ff21be873c7564fbc8f9319a30bdb20760492e13",
+    "examples/forward.py": "74fcdb94483b4e2b207b340d48814454be87c4740ef80a1d54a0686e6fc2b40c",
+    "LICENSE": "44d99d350c2ca65e04707adf151f712ccc3ecd186a0c3e402daa542fd29276fd",
+    "pyproject.toml": "ad41b5014e61f09ea8ba291caac35a20e1e119de7a823fa0735e98b0e377ccd5",
+    "README.md": "d482e17db9ee68a0f7085c45beb455edf57b2706c4db20180de1b378c285817b",
+    "setup.cfg": "34ca94439aa7d453cf68a0d55345cd46820bd72411d7cd3822d9b9317601d20b",
+    "tccrnet/__init__.py": "2efed8537c8407a533e156106c47c002d224adbcacd6650c4438cc82335f5e1b",
+    "tccrnet/model.py": "e06b9165fefa3fa91d66f50aecb990ea867d58059fc91ef4a9a14c8dd3199b30",
+    "tccrnet/resonant.py": "059ac0dc69e9d59a0ea3d15dc190d25b5aabf4c0787bd0232fb089664a5af772",
+    "tccrnet/spike.py": "2303db87f94ae31f2b8449f69ae4e77976bd84922cbeb2f548208f023dc72ead",
+    "tests/test_model.py": "fdc65563c7e46013f0598e3107ccf3f47381b3308e0617dcd806766157e61e28"
+  }
+}
