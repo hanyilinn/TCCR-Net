@@ -2,9 +2,30 @@
 
 **Efficient EEG Denoising via Compressed Context Modeling and Complementary Reconstruction**
 
-Minimal PyTorch implementation of TCCR-Net for single-channel EEG denoising.
-This first release contains the network, its required resonant/event modules,
-an executable CPU example, and synthetic forward/backward checks.
+TCCR-Net removes artifacts from single-channel EEG through compressed context
+modeling and complementary reconstruction. It combines a shared temporal pyramid
+encoder, two reconstruction routes, and adaptive output fusion.
+
+## Architecture
+
+![TCCR-Net architecture: shared temporal pyramid encoder, complementary reconstruction routes, and adaptive output fusion](assets/tccr-net-architecture.png)
+
+1. A convolutional stem downsamples the input by two.
+2. Five stages fuse local convolution and temporal attention paths, giving
+   total temporal compression of 64 (512 samples become 8 latent frames).
+3. A learned complex-pole resonant block supplies latent temporal context.
+4. A global readout synthesizes a clean waveform; a multiscale decoder uses
+   gated skip features to estimate the artifact residual.
+5. A sample-wise router mixes the global and residual-based clean estimates.
+
+## Results
+
+![EEG artifact-removal comparison across single-artifact and mixed-artifact conditions](assets/denoising-results.png)
+
+Comparison across single-artifact and mixed-artifact conditions. Higher CC and
+SNR, and lower RRMSE, indicate better reconstruction. **Proposed** denotes TCCR-Net.
+
+## Model configuration
 
 The default configuration matches the architecture of the historical ECG
 GGLP-ANN model now presented as TCCR-Net: **3,135,270 parameters**, 512 samples,
@@ -53,15 +74,7 @@ Actual EEG preprocessing must agree with the training recipe of the weights.
 `mean_rate`/`block_0_spikes` keys summarize analog activity, not binary spikes
 or measured hardware energy. Recurrent states reset on each forward call.
 
-## Architecture
-
-1. A convolutional stem downsamples the input by two.
-2. Five stages fuse local convolution and temporal attention paths, giving
-   total temporal compression of 64 (512 samples become 8 latent frames).
-3. A learned complex-pole resonant block supplies latent temporal context.
-4. A global readout synthesizes a clean waveform; a multiscale decoder uses
-   gated skip features to estimate the artifact residual.
-5. A sample-wise router mixes the global and residual-based clean estimates.
+## Configuration and weights
 
 `configs/ecg_ann.json` records the default model configuration. `model.config()`
 returns constructor arguments, and state-dict names are preserved from the
@@ -78,8 +91,8 @@ restored.eval()
 
 ## Scope and provenance
 
-This is a model implementation release. Random initialization does not yield
-useful denoising. Pretrained weights, datasets, the full training pipeline,
+Random initialization does not yield useful denoising.
+Pretrained weights, datasets, the full training pipeline,
 baseline code, and paper-result reproduction are not included in this version.
 Historical formal training used staged initialization; instantiating this model
 does not reproduce that training chain or establish teacher-free training.
@@ -95,7 +108,6 @@ Released under the [MIT License](LICENSE).
 
 ## 中文说明
 
-这是 TCCR-Net 的基础模型实现，默认配置与当前正式展示采用的 ECG 模型架构一致。
-包含网络、必要模块、CPU 前向示例与合成数据检查。设置 `spiking=True` 可启用
-脉冲模式。此版尚未提供训练权重、数据集或完整训练流程；随机权重不能直接用于
-有效降噪，也不能据此复现论文性能。
+TCCR-Net 面向单通道脑电伪迹去除，结合共享时序金字塔编码、互补重建路径和自适应
+输出融合。上方展示网络结构与单伪迹、混合伪迹条件下的结果。默认配置与当前正式
+展示采用的 ECG 模型架构一致，设置 `spiking=True` 可启用脉冲模式。

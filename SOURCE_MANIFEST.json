@@ -54,12 +54,32 @@
     "examples/forward.py": "74fcdb94483b4e2b207b340d48814454be87c4740ef80a1d54a0686e6fc2b40c",
     "LICENSE": "44d99d350c2ca65e04707adf151f712ccc3ecd186a0c3e402daa542fd29276fd",
     "pyproject.toml": "ad41b5014e61f09ea8ba291caac35a20e1e119de7a823fa0735e98b0e377ccd5",
-    "README.md": "d482e17db9ee68a0f7085c45beb455edf57b2706c4db20180de1b378c285817b",
+    "README.md": "0a464ebbefaf6a3551e0b3a0d95a629d55cd60fe1d4c908da09f554fc01e30c8",
     "setup.cfg": "34ca94439aa7d453cf68a0d55345cd46820bd72411d7cd3822d9b9317601d20b",
     "tccrnet/__init__.py": "2efed8537c8407a533e156106c47c002d224adbcacd6650c4438cc82335f5e1b",
     "tccrnet/model.py": "e06b9165fefa3fa91d66f50aecb990ea867d58059fc91ef4a9a14c8dd3199b30",
     "tccrnet/resonant.py": "059ac0dc69e9d59a0ea3d15dc190d25b5aabf4c0787bd0232fb089664a5af772",
     "tccrnet/spike.py": "2303db87f94ae31f2b8449f69ae4e77976bd84922cbeb2f548208f023dc72ead",
-    "tests/test_model.py": "fdc65563c7e46013f0598e3107ccf3f47381b3308e0617dcd806766157e61e28"
-  }
+    "tests/test_model.py": "fdc65563c7e46013f0598e3107ccf3f47381b3308e0617dcd806766157e61e28",
+    "assets/tccr-net-architecture.png": "014413aa3aad440cd70eb0156aab25599603f0e6b43dd9f155c2614689d50b69",
+    "assets/denoising-results.png": "32c18faaeeffd6adb995a300a1d79ce2b31c0f7d8cbeb2de7029e29076aef904"
+  },
+  "documentation_updates": [
+    {
+      "date": "2026-10-21",
+      "description": "Use a method-focused introduction and include the two user-supplied figures unchanged.",
+      "figures": [
+        {
+          "path": "assets/tccr-net-architecture.png",
+          "sha256": "014413aa3aad440cd70eb0156aab25599603f0e6b43dd9f155c2614689d50b69",
+          "copied_without_changes": true
+        },
+        {
+          "path": "assets/denoising-results.png",
+          "sha256": "32c18faaeeffd6adb995a300a1d79ce2b31c0f7d8cbeb2de7029e29076aef904",
+          "copied_without_changes": true
+        }
+      ]
+    }
+  ]
 }
